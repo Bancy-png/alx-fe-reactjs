@@ -15,6 +15,7 @@ function MainContent() {
     >
       <h2>Main Content</h2>
       <p>This is the main section of the application.</p>
+      <p>I love to visit New York, Paris, and Tokyo.</p>
     </main>
   );
 }

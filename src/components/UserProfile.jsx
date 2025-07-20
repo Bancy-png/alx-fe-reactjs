@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UserProfile() {
+const UserProfile = (props) => {
   return (
     <div
       style={{
@@ -11,11 +11,11 @@ function UserProfile() {
         backgroundColor: '#f9f9f9',
       }}
     >
-      <h2>User Profile</h2>
-      <p>Name: Bancy Wacuka</p>
-      <p>Email: bancy@example.com</p>
+      <h2>{props.name}</h2>
+      <p>Age: {props.age}</p>
+      <p>Bio: {props.bio}</p>
     </div>
   );
-}
+};
 
 export default UserProfile;
