@@ -4,13 +4,17 @@ import { useRecipeStore } from '../store/recipeStore';
 const SearchBar = () => {
   const setSearchTerm = useRecipeStore((state) => state.setSearchTerm);
 
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
-    <div className="my-4">
+    <div>
       <input
         type="text"
         placeholder="Search recipes..."
-        className="p-2 border border-gray-300 rounded w-full"
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleChange}
+        style={{ padding: '8px', width: '100%', marginBottom: '16px' }}
       />
     </div>
   );
