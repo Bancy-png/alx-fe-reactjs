@@ -1,26 +1,41 @@
 // src/components/RecipeDetails.jsx
-import { useParams } from 'react-router-dom';
-import { useRecipeStore } from './recipeStore';
-import EditRecipeForm from './EditRecipeForm';
-import DeleteRecipeButton from './DeleteRecipeButton';
+import { useParams, Link } from 'react-router-dom';
+import { useRecipeStore } from "./recipeStore";
 
 const RecipeDetails = () => {
   const { id } = useParams();
-  const recipe = useRecipeStore((state) =>
-    state.recipes.find((recipe) => recipe.id === id)
-  );
+  const recipes = useRecipeStore((state) => state.recipes);
+  const favorites = useRecipeStore((state) => state.favorites);
+  const toggleFavorite = useRecipeStore((state) => state.toggleFavorite);
+
+  const recipe = recipes.find((r) => r.id === parseInt(id));
 
   if (!recipe) return <p>Recipe not found.</p>;
 
+  const isFavorite = favorites.includes(recipe.id);
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(recipe.id);
+    alert(
+      isFavorite
+        ? 'Removed from favorites!'
+        : 'Added to favorites!'
+    );
+  };
+
   return (
     <div>
-      <h1>{recipe.title}</h1>
+      <h2>{recipe.title}</h2>
       <p>{recipe.description}</p>
 
-      <h3>Edit Recipe</h3>
-      <EditRecipeForm recipe={recipe} />
+      <button onClick={handleToggleFavorite}>
+        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+      </button>
 
-      <DeleteRecipeButton id={recipe.id} />
+      <div style={{ marginTop: '20px' }}>
+        <Link to="/">← Back to Recipes</Link> |{' '}
+        <Link to="/favorites">❤️ View Favorites</Link>
+      </div>
     </div>
   );
 };

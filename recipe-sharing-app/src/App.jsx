@@ -1,10 +1,11 @@
 // src/App.jsx
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useRecipeStore } from './components/recipeStore';
 import RecipeDetails from './components/RecipeDetails';
-import EditRecipeForm from './components/EditRecipeForm'; // ✅ NEW
-import AddRecipeForm from './components/AddRecipeForm';   // Already imported
+import AddRecipeForm from './components/AddRecipeForm';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
+import Favorites from './components/Favorites';
 
 function App() {
   const recipes = useRecipeStore((state) => state.recipes);
@@ -13,10 +14,12 @@ function App() {
     <Router>
       <div>
         <h1>Recipe Sharing App</h1>
-        <Link to="/add">
-          <button>Add New Recipe</button>
-        </Link>
-
+        <nav>
+          <Link to="/">Home</Link> |{" "}
+          <Link to="/favorites">Favorites</Link> |{" "}
+          <Link to="/recommendations">Recommendations</Link>
+          <Link to="/">Home</Link> | <Link to="/favorites">Favorites</Link>
+        </nav>
         <Routes>
           <Route
             path="/"
@@ -28,17 +31,15 @@ function App() {
                       <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
                     </h2>
                     <p>{recipe.description}</p>
-                    <Link to={`/edit/${recipe.id}`}>
-                      <button>Edit</button>
-                    </Link>
                   </div>
                 ))}
               </div>
             }
           />
           <Route path="/recipes/:id" element={<RecipeDetails />} />
-          <Route path="/edit/:id" element={<EditRecipeForm />} /> {/* ✅ NEW */}
-          <Route path="/add" element={<AddRecipeForm />} />       {/* ✅ Already added */}
+          <Route path="/favorites" element={<FavoritesList />} />
+          <Route path="/recommendations" element={<RecommendationsList />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </div>
     </Router>

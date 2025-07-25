@@ -1,10 +1,12 @@
+// src/components/recipeStore.js
 import { create } from 'zustand';
 
 export const useRecipeStore = create((set) => ({
   recipes: [],
   searchTerm: '',
   filteredRecipes: [],
-  
+  favorites: [], // ✅ Add favorites array
+
   setSearchTerm: (term) => {
     set({ searchTerm: term });
     set((state) => ({
@@ -20,6 +22,13 @@ export const useRecipeStore = create((set) => ({
       filteredRecipes: recipes.filter((recipe) =>
         recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
       ),
+    }));
+  },
+
+  // ✅ Add to favorites method
+  addToFavorites: (recipeId) => {
+    set((state) => ({
+      favorites: [...new Set([...state.favorites, recipeId])], // No duplicates
     }));
   },
 }));
