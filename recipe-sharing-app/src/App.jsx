@@ -1,6 +1,7 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useRecipeStore } from './components/recipeStore';
+import RecipeList from './components/RecipeList';S
 import RecipeDetails from './components/RecipeDetails';
 import AddRecipeForm from './components/AddRecipeForm';
 import FavoritesList from './components/FavoritesList';
