@@ -5,7 +5,8 @@ export const useRecipeStore = create((set) => ({
   recipes: [],
   searchTerm: '',
   filteredRecipes: [],
-  favorites: [], // ✅ Add favorites array
+  favorites: [],
+  recommendations: [], // ✅ Added this line
 
   setSearchTerm: (term) => {
     set({ searchTerm: term });
@@ -25,10 +26,14 @@ export const useRecipeStore = create((set) => ({
     }));
   },
 
-  // ✅ Add to favorites method
   addToFavorites: (recipeId) => {
     set((state) => ({
-      favorites: [...new Set([...state.favorites, recipeId])], // No duplicates
+      favorites: [...new Set([...state.favorites, recipeId])],
     }));
+  },
+
+  // ✅ (Optional) Set recommendations method
+  setRecommendations: (recommendations) => {
+    set({ recommendations });
   },
 }));
