@@ -30,6 +30,7 @@ const RecipeList = () => {
             <li key={recipe.id}>
               <Link to={`/recipe/${recipe.id}`}>
                 <h3>{recipe.title}</h3>
+                <button>Add New Recipe</button>
               </Link>
               <p>{recipe.description}</p>
             </li>
