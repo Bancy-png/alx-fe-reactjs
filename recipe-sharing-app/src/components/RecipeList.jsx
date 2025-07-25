@@ -1,17 +1,21 @@
-import { useRecipeStore } from './recipeStore';
+import React from 'react';
+import { useRecipeStore } from '../store/recipeStore';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
+  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
 
   return (
-    <div>
-      <h2>Recipe List</h2>
-      {recipes.map((recipe) => (
-        <div key={recipe.id}>
-          <h3>{recipe.title}</h3>
-          <p>{recipe.description}</p>
-        </div>
-      ))}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {filteredRecipes.length === 0 ? (
+        <p>No recipes found.</p>
+      ) : (
+        filteredRecipes.map((recipe) => (
+          <div key={recipe.id} className="p-4 border rounded">
+            <h2 className="text-xl font-semibold">{recipe.title}</h2>
+            <p>{recipe.description}</p>
+          </div>
+        ))
+      )}
     </div>
   );
 };

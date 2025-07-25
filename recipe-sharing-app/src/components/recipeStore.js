@@ -1,20 +1,25 @@
-// src/components/recipeStore.js
 import { create } from 'zustand';
 
 export const useRecipeStore = create((set) => ({
   recipes: [],
-  addRecipe: (recipe) =>
+  searchTerm: '',
+  filteredRecipes: [],
+  
+  setSearchTerm: (term) => {
+    set({ searchTerm: term });
     set((state) => ({
-      recipes: [...state.recipes, { ...recipe, id: Date.now().toString() }],
-    })),
-  updateRecipe: (id, updatedRecipe) =>
-    set((state) => ({
-      recipes: state.recipes.map((recipe) =>
-        recipe.id === id ? { ...recipe, ...updatedRecipe } : recipe
+      filteredRecipes: state.recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(term.toLowerCase())
       ),
-    })),
-  deleteRecipe: (id) =>
+    }));
+  },
+
+  setRecipes: (recipes) => {
+    set({ recipes });
     set((state) => ({
-      recipes: state.recipes.filter((recipe) => recipe.id !== id),
-    })),
+      filteredRecipes: recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+      ),
+    }));
+  },
 }));
