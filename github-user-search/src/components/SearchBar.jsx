@@ -1,27 +1,41 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { fetchUserData } from '../services/githubService';
 
-const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
+function SearchBar({ onUserFound }) {
+  const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (query.trim() !== '') {
-      onSearch(query.trim());
+    setLoading(true);
+    setError('');
+    try {
+      const data = await fetchUserData(username);
+      onUserFound(data);
+    } catch (err) {
+      setError('Looks like we can’t find the user.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="search-form">
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search GitHub users"
-        className="search-input"
-      />
-      <button type="submit" className="search-button">Search</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </div>
   );
-};
+}
 
 export default SearchBar;

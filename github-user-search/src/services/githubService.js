@@ -5,7 +5,7 @@ const token = import.meta.env.VITE_GITHUB_TOKEN;
 
 const headers = token ? { Authorization: `token ${token}` } : {};
 
-export const fetchGitHubUser = async (username) => {
+export const fetchUserData = async (username) => {
   try {
     const response = await axios.get(`${BASE_URL}${username}`, { headers });
     return response.data;
