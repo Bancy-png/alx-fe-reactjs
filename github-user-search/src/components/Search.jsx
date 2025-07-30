@@ -28,7 +28,7 @@ function Search() {
         setDetailedUser(detailed); // Optional for display
       }
     } catch (err) {
-      setError('Looks like we can’t find the user');
+      setError('Looks like we cant find the user');
     } finally {
       setLoading(false);
     }
