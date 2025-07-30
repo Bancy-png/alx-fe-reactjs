@@ -19,7 +19,7 @@ function Search() {
       const data = await fetchUsersAdvanced(username, location, minRepos);
       setUsers(data.items); // GitHub Search API returns an object with `items`
     } catch (err) {
-      setError('Looks like we can’t find the user');
+      setError('Looks like we cant find the user');
     } finally {
       setLoading(false);
     }
