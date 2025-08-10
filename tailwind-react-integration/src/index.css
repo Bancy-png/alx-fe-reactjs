@@ -1,3 +1,6 @@
+@import "tailwindcss";
+
+/* Optional for normal Tailwind setup */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
