@@ -7,9 +7,9 @@ function UserProfile() {
         alt="User avatar"
         className="rounded-full w-36 h-36 mx-auto"
       />
-      <h1 className="text-xl text-blue-800 my-4">John Doe</h1>
+      <h1 className="text-xl text-blue-800 my-4">Bancy Wacuka</h1>
       <p className="text-gray-600 text-base">
-        Developer at Example Co. Loves to write code and explore new technologies.
+        Developer B and Daughters co. Loves to write code and explore new technologies.
       </p>
     </div>
   );
