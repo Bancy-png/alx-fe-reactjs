@@ -1,15 +1,39 @@
+// src/components/UserProfile.jsx
+import React from 'react';
+
 function UserProfile() {
   return (
-    <div className="bg-gray-100 sm:p-4 md:p-8 max-w-xs md:max-w-sm mx-auto my-20 rounded-lg shadow-lg">
+    <div
+      className="
+        user-profile
+        bg-gray-100 sm:p-4 md:p-8
+        max-w-xs md:max-w-sm
+        mx-auto my-20
+        rounded-lg shadow-lg
+        hover:shadow-xl
+        transform hover:-translate-y-1
+        transition-all duration-300 ease-in-out
+        text-center
+      "
+    >
       <img
         src="https://via.placeholder.com/150"
-        alt="User"
-        className="rounded-full sm:w-24 sm:h-24 md:w-36 md:h-36 mx-auto"
+        alt="User avatar"
+        className="
+          rounded-full
+          w-24 h-24 md:w-36 md:h-36
+          mx-auto
+          transform transition-transform duration-300 ease-in-out
+          hover:scale-110
+        "
       />
-      <h1 className="sm:text-lg md:text-xl text-blue-800 my-4">Bancy Wacuka</h1>
-      <p className="text-gray-600 sm:text-sm md:text-base">
-        Developer at B and daughter Co. Loves to write code and explore new
-        technologies.
+
+      <h1 className="text-lg md:text-xl text-blue-800 my-4 transition-colors duration-200 hover:text-blue-500">
+        Bancy Wacuka
+      </h1>
+
+      <p className="text-gray-600 text-sm md:text-base">
+        Developer at B and Daughter Co. Loves to write code and explore new technologies.
       </p>
     </div>
   );
