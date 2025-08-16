@@ -13,7 +13,12 @@ export default function HomePage() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
-      .then((data) => setRecipes(data))
+      .then((data) => {
+        // Append any user-added recipes from localStorage
+        const extras = JSON.parse(localStorage.getItem("recipes_extra") || "[]");
+        // place extras after default data so they appear at the end (or reverse if you prefer newest first)
+        setRecipes([...data, ...extras]);
+      })
       .catch((err) => setError(err.message || "Failed to load recipes"))
       .finally(() => setLoading(false));
   }, []);
@@ -37,13 +42,20 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-6xl px-4 py-10">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight">
-            Recipe Sharing Platform
-          </h1>
-          <p className="mt-2 text-gray-600">
-            Browse, add, and share your favorite recipes.
-          </p>
+        <header className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Recipe Sharing Platform</h1>
+            <p className="mt-2 text-gray-600">Browse, add, and share your favorite recipes.</p>
+          </div>
+
+          <div>
+            <Link
+              to="/add"
+              className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+            >
+              + Add Recipe
+            </Link>
+          </div>
         </header>
 
         {/* Responsive grid */}
@@ -54,23 +66,14 @@ export default function HomePage() {
               className="bg-white rounded-2xl shadow hover:shadow-xl transition transform hover:-translate-y-0.5 overflow-hidden"
             >
               <div className="w-full h-48 bg-gray-100">
-                <img
-                  src={r.image}
-                  alt={r.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <img src={r.image} alt={r.title} className="w-full h-full object-cover" loading="lazy" />
               </div>
 
               <div className="p-5">
                 <h2 className="text-xl font-semibold">{r.title}</h2>
                 <p className="mt-2 text-gray-600 line-clamp-3">{r.summary}</p>
 
-                {/* React Router Link to details */}
-                <Link
-                  to={`/recipe/${r.id}`}
-                  className="inline-flex items-center mt-4 text-blue-600 hover:underline"
-                >
+                <Link to={`/recipe/${r.id}`} className="inline-flex items-center mt-4 text-blue-600 hover:underline">
                   View details →
                 </Link>
               </div>
