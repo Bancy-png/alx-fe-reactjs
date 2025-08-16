@@ -86,12 +86,12 @@ export default function RecipeDetail() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold">Steps</h2>
+              <h2 className="text-xl font-semibold">Instructions</h2>
               <ol className="mt-3 list-decimal list-inside space-y-2 text-gray-700">
-                {Array.isArray(recipe.steps) && recipe.steps.length > 0 ? (
-                  recipe.steps.map((step, idx) => <li key={idx}>{step}</li>)
+                {Array.isArray(recipe.instructions) && recipe.instructions.length > 0 ? (
+                  recipe.instructions.map((step, idx) => <li key={idx}>{step}</li>)
                 ) : (
-                  <li>No steps provided.</li>
+                  <li>No instructions provided.</li>
                 )}
               </ol>
             </section>

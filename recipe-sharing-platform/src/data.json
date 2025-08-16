@@ -12,7 +12,7 @@
       "Black pepper",
       "Salt"
     ],
-    "steps": [
+    "instructions": [
       "Cook spaghetti in salted water until al dente.",
       "Fry bacon until crisp; remove from heat.",
       "Whisk eggs, yolk, Parmesan, and pepper in a bowl.",
@@ -33,7 +33,7 @@
       "Cream or coconut cream",
       "Garam masala, salt"
     ],
-    "steps": [
+    "instructions": [
       "Marinate chicken in yogurt and tikka spices; grill or pan-sear.",
       "Sauté onion; add tomato puree and simmer.",
       "Stir in cream and garam masala.",
@@ -47,7 +47,7 @@
     "summary": "Crisp veggies tossed in a light soy-garlic sauce served over rice.",
     "image": "https://via.placeholder.com/600x400?text=Stir+Fry",
     "ingredients": ["Mixed vegetables", "Soy sauce", "Garlic", "Ginger", "Oil", "Rice"],
-    "steps": [
+    "instructions": [
       "Heat oil in wok; add garlic and ginger.",
       "Stir-fry vegetables until crisp-tender.",
       "Add soy sauce; toss and serve over rice."
@@ -59,7 +59,7 @@
     "summary": "Fragrant East African spiced rice with tender beef chunks.",
     "image": "https://via.placeholder.com/600x400?text=Beef+Pilau",
     "ingredients": ["Beef", "Rice", "Pilau masala", "Onion", "Garlic", "Stock", "Salt"],
-    "steps": [
+    "instructions": [
       "Brown beef with onions and spices.",
       "Add rice and stock; simmer until cooked.",
       "Fluff and serve."
@@ -71,7 +71,7 @@
     "summary": "Soft chapati wraps stuffed with spiced chicken and fresh veggies.",
     "image": "https://via.placeholder.com/600x400?text=Chapati+Wraps",
     "ingredients": ["Chapati", "Chicken", "Spices", "Lettuce", "Tomato", "Sauce"],
-    "steps": [
+    "instructions": [
       "Cook spiced chicken.",
       "Warm chapati, layer chicken and veggies.",
       "Wrap and serve."
@@ -83,7 +83,7 @@
     "summary": "Moist banana loaf with a hint of cinnamon—perfect with tea.",
     "image": "https://via.placeholder.com/600x400?text=Banana+Bread",
     "ingredients": ["Bananas", "Flour", "Sugar", "Eggs", "Butter/Oil", "Baking soda", "Cinnamon"],
-    "steps": [
+    "instructions": [
       "Mash bananas and mix wet ingredients.",
       "Fold in dry ingredients.",
       "Bake until a skewer comes out clean."
