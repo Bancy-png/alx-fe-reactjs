@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://via.placeholder.com/600x400?text=Carbonara"
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Grilled chicken tikka cooked in a smooth buttery & creamy tomato gravy.",
+    "image": "https://via.placeholder.com/600x400?text=Tikka+Masala"
+  },
+  {
+    "id": 3,
+    "title": "Vegetable Stir-Fry",
+    "summary": "Crisp veggies tossed in a light soy-garlic sauce served over rice.",
+    "image": "https://via.placeholder.com/600x400?text=Stir+Fry"
+  },
+  {
+    "id": 4,
+    "title": "Beef Pilau",
+    "summary": "Fragrant East African spiced rice with tender beef chunks.",
+    "image": "https://via.placeholder.com/600x400?text=Beef+Pilau"
+  },
+  {
+    "id": 5,
+    "title": "Chapati Wraps",
+    "summary": "Soft chapati wraps stuffed with spiced chicken and fresh veggies.",
+    "image": "https://via.placeholder.com/600x400?text=Chapati+Wraps"
+  },
+  {
+    "id": 6,
+    "title": "Banana Bread",
+    "summary": "Moist banana loaf with a hint of cinnamon—perfect with tea.",
+    "image": "https://via.placeholder.com/600x400?text=Banana+Bread"
+  }
+]
