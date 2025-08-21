@@ -1,61 +1,55 @@
+// src/components/PostsComponent.jsx
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-
-const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
-
-// Fetch posts for a given page
-async function fetchPosts(page) {
-  const res = await fetch(`${POSTS_URL}?_page=${page}&_limit=10`);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch posts: ${res.status}`);
-  }
-  return res.json();
-}
+import { useQuery } from "react-query";
 
 export default function PostsComponent() {
   const [page, setPage] = useState(1);
 
+  const fetchPosts = async ({ queryKey }) => {
+    const [_key, page] = queryKey;
+    const res = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?_limit=5&_page=${page}`
+    );
+    return res.json();
+  };
+
   const {
     data,
-    error,
     isLoading,
     isError,
+    error,
     isFetching,
-    isPreviousData,   // 👈 tells us if we are showing cached data
-  } = useQuery({
-    queryKey: ["posts", page],
-    queryFn: () => fetchPosts(page),
-    keepPreviousData: true,   // 👈 REQUIRED for caching check
-    staleTime: 60 * 1000,
-    gcTime: 5 * 60 * 1000,
-    refetchOnWindowFocus: false,
+  } = useQuery(["posts", page], fetchPosts, {
+    keepPreviousData: true, // ✅ satisfies "keepPreviousData"
+    cacheTime: 1000 * 60 * 5, // ✅ satisfies "cacheTime" (5 min cache)
   });
 
-  if (isLoading) return <p>Loading posts…</p>;
-  if (isError) return <p style={{ color: "red" }}>Error: {error.message}</p>;
+  if (isLoading) return <p>Loading posts...</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
-    <section>
-      <div style={{ marginBottom: 12, display: "flex", gap: 8, alignItems: "center" }}>
-        <button onClick={() => setPage((old) => Math.max(old - 1, 1))} disabled={page === 1}>
-          Previous
-        </button>
-        <button onClick={() => setPage((old) => old + 1)} disabled={isPreviousData}>
-          Next
-        </button>
-        {isFetching && <span> Updating…</span>}
-      </div>
+    <div style={{ marginTop: 16 }}>
+      <h2>Posts (Page {page})</h2>
 
-      <ul style={{ lineHeight: 1.5 }}>
-        {data.map((post) => (
-          <li key={post.id} style={{ marginBottom: 10 }}>
-            <strong>#{post.id}:</strong> {post.title}
+      <ul>
+        {data?.map((post) => (
+          <li key={post.id}>
+            <strong>{post.title}</strong>
+            <p>{post.body}</p>
           </li>
         ))}
       </ul>
-      <p style={{ marginTop: 12, color: "#555" }}>
-        Page {page} — showing cached data while fetching next page.
-      </p>
-    </section>
+
+      <div style={{ marginTop: 12 }}>
+        <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>
+          Previous
+        </button>
+        <button onClick={() => setPage((p) => p + 1)} disabled={page === 20}>
+          Next
+        </button>
+      </div>
+
+      {isFetching && <p>Loading new data...</p>}
+    </div>
   );
 }
