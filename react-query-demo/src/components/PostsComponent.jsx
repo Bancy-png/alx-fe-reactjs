@@ -20,8 +20,10 @@ export default function PostsComponent() {
     error,
     isFetching,
   } = useQuery(["posts", page], fetchPosts, {
-    keepPreviousData: true, // ✅ satisfies "keepPreviousData"
-    cacheTime: 1000 * 60 * 5, // ✅ satisfies "cacheTime" (5 min cache)
+    keepPreviousData: true, // ✅ keep old data during fetch
+    cacheTime: 1000 * 60 * 5, // ✅ cache for 5 minutes
+    staleTime: 1000 * 30, // ✅ data considered fresh for 30s
+    refetchOnWindowFocus: false, // ✅ prevent auto refetch on window focus
   });
 
   if (isLoading) return <p>Loading posts...</p>;
