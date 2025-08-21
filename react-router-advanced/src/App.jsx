@@ -8,7 +8,7 @@ import About from "./components/About";
 import Login from "./components/Login";
 import Posts from "./components/Posts";
 import Post from "./components/Post";
-import Profile from "./components/Profile/Profile";
+import Profile from "./components/Profile";
 import ProfileDetails from "./components/Profile/ProfileDetails";
 import ProfileSettings from "./components/Profile/ProfileSettings";
 import ProtectedRoute from "./components/ProtectedRoute";
