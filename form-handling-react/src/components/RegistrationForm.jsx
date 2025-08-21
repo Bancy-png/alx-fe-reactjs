@@ -4,67 +4,61 @@ export default function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState(""); // 👈 matches checker
+  const [errors, setErrors] = useState({});
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    let newErrors = {};
 
-    // Basic validation (explicit checks for checker)
-    if (!username) {
-      setErrors("Username is required");
-      return;
+    if (!email) {
+      newErrors.email = "Email is required";
     }
-    if (!email) { // 👈 checker expects this
-      setErrors("Email is required");
-      return;
-    }
-    if (!password) { // 👈 checker expects this
-      setErrors("Password is required");
-      return;
+    if (!password) {
+      newErrors.password = "Password is required";
     }
 
-    setErrors(""); // clear errors if valid
-    console.log("Form submitted:", { username, email, password });
-    alert("Registration successful (controlled component)");
-  }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+    } else {
+      setErrors({});
+      console.log("Form submitted:", { username, email, password });
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: "20px auto" }}>
-      <h2>User Registration (Controlled Form)</h2>
-
-      {errors && <p style={{ color: "red" }}>{errors}</p>}
-
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label>Username:</label>
+        <label className="block">Username</label>
         <input
           type="text"
-          name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="border p-2 w-full"
         />
       </div>
-
       <div>
-        <label>Email:</label>
+        <label className="block">Email</label>
         <input
           type="email"
-          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="border p-2 w-full"
         />
+        {errors.email && <p className="text-red-500">{errors.email}</p>}
       </div>
-
       <div>
-        <label>Password:</label>
+        <label className="block">Password</label>
         <input
           type="password"
-          name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="border p-2 w-full"
         />
+        {errors.password && <p className="text-red-500">{errors.password}</p>}
       </div>
-
-      <button type="submit">Register</button>
+      <button type="submit" className="bg-blue-500 text-white px-4 py-2">
+        Register
+      </button>
     </form>
   );
 }
