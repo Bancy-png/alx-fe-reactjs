@@ -1,8 +1,12 @@
-export default function App() {
+import RegistrationForm from "./components/RegistrationForm";
+
+function App() {
   return (
-    <main style={{ padding: 24, fontFamily: "system-ui, sans-serif" }}>
-      <h1>Form Handling — Setup ✅</h1>
-      <p>Project is running. Next: controlled components.</p>
-    </main>
+    <div>
+      <h1>Form Handling React Task</h1>
+      <RegistrationForm />
+    </div>
   );
 }
+
+export default App;
