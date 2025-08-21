@@ -1,30 +1,22 @@
-import React from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+// src/components/Profile.jsx
+import { Routes, Route, Link } from "react-router-dom";
+import ProfileDetails from "./ProfileDetails";
+import ProfileSettings from "./ProfileSettings";
 
 export default function Profile() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  function handleLogout() {
-    logout(() => navigate("/", { replace: true }));
-  }
-
   return (
     <div>
       <h2>Profile</h2>
-      <p>Welcome, <strong>{user?.name}</strong></p>
-
-      <nav style={{ marginBottom: 12 }}>
-        <Link to="details" style={{ marginRight: 12 }}>Details</Link>
+      <nav>
+        <Link to="details">Details</Link> |{" "}
         <Link to="settings">Settings</Link>
       </nav>
 
-      <Outlet />
-
-      <div style={{ marginTop: 12 }}>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
+      {/* Nested routes inside Profile */}
+      <Routes>
+        <Route path="details" element={<ProfileDetails />} />
+        <Route path="settings" element={<ProfileSettings />} />
+      </Routes>
     </div>
   );
 }
