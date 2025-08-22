@@ -1,15 +1,7 @@
-import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
-  const auth = useAuth();
-  const location = useLocation();
+  const isAuthenticated = false; // replace with real auth check (e.g. context or state)
 
-  if (!auth.isAuthenticated) {
-    // Save the location they tried to access so we can send them back after login
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  return children;
+  return isAuthenticated ? children : <Navigate to="/login" />;
 }

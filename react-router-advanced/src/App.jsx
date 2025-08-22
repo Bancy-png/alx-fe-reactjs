@@ -1,17 +1,28 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Profile from "./components/Profile";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
 import BlogPost from "./components/BlogPost";
+import Profile from "./components/Profile";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-function App() {
+export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/profile/*" element={<Profile />} />
-        {/* Dynamic route */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/blog/:id" element={<BlogPost />} />
+        <Route path="/profile/*" element={<Profile />} />
       </Routes>
     </Router>
   );
 }
-
-export default App;
