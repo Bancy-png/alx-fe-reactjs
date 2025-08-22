@@ -11,8 +11,8 @@ describe("TodoList", () => {
 
   test("adds a new todo", () => {
     render(<TodoList />);
-    const input = screen.getByLabelText("todo-input");
-    const form = screen.getByRole("form", { name: /add-todo-form/i });
+    const input = screen.getByTestId("todo-input");
+    const form = screen.getByTestId("add-todo-form");
 
     fireEvent.change(input, { target: { value: "New todo item" } });
     fireEvent.submit(form);
